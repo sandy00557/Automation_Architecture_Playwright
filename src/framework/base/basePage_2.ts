@@ -46,7 +46,5 @@ export class BasePage{
         logger.info(`Getting text from ${selector}`);
         return await this.getLocator(selector).innerText();
     }
-
-
-
 }
+
