@@ -12,7 +12,9 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: './src/tests',
+  globalSetup:require.resolve('./src/framework/hooks/globalSetup_11'),
+  globalTeardown:require.resolve('./src/framework/hooks/globalTeardown_12'),
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
