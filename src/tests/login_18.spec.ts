@@ -26,8 +26,8 @@ import { TIMEOUTS } from "../framework/constants/timeouts_8";
 test.describe('Authentication - Login',()=>{
   test(`${TAGS.SMOKE} ${TAGS.AUTH} Standard user login`,async({authFlows,assert})=>{
     test.setTimeout(TIMEOUTS.MEDIUM);//The whole test should be completed within that timelimit or else it will show timelimit exceeded.
-    await authFlows.loginAsStandardUser();
-    await assert.urlContains('/dashboard');
+    await authFlows.loginAsAdmin();
+    await assert.urlContains('https://business-iam.sit.gcash.com/admin/master/console/');
 
   })
 })

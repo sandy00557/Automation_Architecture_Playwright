@@ -32,6 +32,7 @@ export async function afterEachHook(page:Page,testInfo:any){
 
 
     //Clear context after execution
-    TestContext.clears(testInfo.expectedStatus);
+    TestContext.clears(testInfo);
+    //TestContext.clears(testInfo.expectedStatus); //if we want to clear specific data
 
 }

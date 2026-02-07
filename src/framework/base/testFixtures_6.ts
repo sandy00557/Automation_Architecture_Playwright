@@ -1,5 +1,4 @@
 import { logger } from "../../support/infra/logger_1";
-import { config } from "../config/configReader_5";
 import {test as base} from '@playwright/test';
 import { beforeEachHook } from "../hooks/beforeEachHook_16";
 import { afterEachHook } from "../hooks/afterEachHook_17";
@@ -19,7 +18,7 @@ export const testFixture= base.extend<AppFixtures>({
         await beforeEachHook(testInfo);
 
         logger.info("Navigating to application");
-        await page.goto(config.baseUrl);
+        await page.goto('/');
 
         await use(page);//use is the function Playwright provides inside a fixture. It hands over the prepared resource to the test, pauses the fixture until the test finishes, and then continues execution for cleanup.use is the keyword that tells playwright to start the test created.
 
@@ -85,7 +84,7 @@ Step 2: there is a fixture dependency here called "pagetotest"(but recommended t
 Step 3: In the fixture we will create a page using playwright and add all the fixtures needed. Here we have add the page url. So we dont want to write the page url in every page.
 Step 4: If we type a keyword keyword "use" in the fixtures means we are telling after this step we should execute the test file.
 for eg:
-await page.goto(config.baseUrl);
+await page.goto("/");
 await use(page);
 logger.info("Test finished, fixture teardown");
 first we will open the url. then there is "use" so go to test with this page.

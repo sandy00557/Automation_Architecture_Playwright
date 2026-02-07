@@ -24,8 +24,8 @@ export class UserBuilder{
     If we have already defined values we can make it static but object creation in main class method also acceptable. */
     static standardUser(){
         return new UserBuilder()
-        .withUsername('standard_user')
-        .withPassword('secret_sauce')
+        .withUsername('practice')
+        .withPassword('SuperSecretPassword!')
         .withRole('standard');
     }
     /*
@@ -41,8 +41,8 @@ export class UserBuilder{
 
     static adminUser(){
         return new UserBuilder()
-        .withUsername('admin_user')
-        .withPassword('admin_pass')
+        .withUsername('ctan')
+        .withPassword('connect2GC@sh')
         .withRole('admin');
     }
 

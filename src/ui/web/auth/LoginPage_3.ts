@@ -4,14 +4,19 @@ import { BasePage } from "../../../framework/base/basePage_2";
 export class LoginPage extends BasePage{
 
 
+
     constructor(page:Page){
         super(page);
     }
 
     //if we make it private it cannot be accessed by any even when they inherit
-    private usernameInput='#username';
-    private passwordInput='#password';
-    private loginButton='#loginbtn';
+    //page.getByRole('textbox', { name: 'Username' })
+    //page.getByRole('textbox', { name: 'Password' })
+    //page.locator('#kc-login')
+    private usernameInput='role=textbox[name="Username"]';
+    private passwordInput='role=textbox[name="Password"]';
+    private loginButton = '#kc-login';
+
 
 
     async enterUsername(username:string):Promise<void>{
