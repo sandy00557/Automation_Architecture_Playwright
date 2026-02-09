@@ -5,9 +5,17 @@ import { afterEachHook } from "../hooks/afterEachHook_17";
 import { LoginPage } from "../../ui/web/auth/LoginPage_3";
 import { AuthFlows } from "../../domain/authFlows_4";
 import { AssertionUtils } from "../../support/assertion/assertionUtils_9";
+import { RoleFlow } from "../../domain/roleFlow_20";
+import { RolePage } from "../../ui/web/auth/rolePage_19";
+import { UserFlow } from "../../domain/userFlow_25";
+import { UserPage } from "../../ui/web/auth/userPage_23";
 type AppFixtures={
   loginPage:LoginPage;
+  rolePage:RolePage;
+  userPage:UserPage;
   authFlows:AuthFlows;
+  roleFlows:RoleFlow;
+  userFlows:UserFlow;
   assert:AssertionUtils;
 }
 
@@ -55,8 +63,24 @@ export const testFixture= base.extend<AppFixtures>({
       await use(new LoginPage(page));
     },
 
+    rolePage:async({page},use)=>{
+      await use(new RolePage(page));
+    },
+
+    userPage:async({page},use)=>{
+      await use(new UserPage(page));
+    },
+
     authFlows:async({loginPage},use)=>{
       await use(new AuthFlows(loginPage));
+    },
+
+    roleFlows:async({rolePage,authFlows},use)=>{
+      await use(new RoleFlow(rolePage,authFlows));
+    },
+
+    userFlows:async({userPage},use)=>{
+      await use(new UserFlow(userPage));
     },
 
     assert:async({page},use)=>{

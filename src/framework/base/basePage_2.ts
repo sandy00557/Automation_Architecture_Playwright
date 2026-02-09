@@ -42,6 +42,12 @@ export class BasePage{
         await this.getLocator(selector).fill(text);
     }
 
+    async clickAndType(selector:string,text:string):Promise<void>{
+        logger.info(`Clicking and typing into ${selector}: ${text}`);
+        await this.getLocator(selector).click();
+        await this.getLocator(selector).fill(text);
+    }
+
     async getText(selector:string):Promise<string>{
         logger.info(`Getting text from ${selector}`);
         return await this.getLocator(selector).innerText();

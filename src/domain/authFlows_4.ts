@@ -1,4 +1,4 @@
-// import { LoginPage } from "../ui/web/auth/StandardLoginPage_3";
+// import { LoginPage } from "../ui/web/auth/LoginPage_3";
 // import { logger } from "../support/infra/logger_1";
 // import { UserBuilder,User } from "../data/builders/userBuilder_10";
 
@@ -64,18 +64,11 @@
 
 
 
-
-
-
-
-
-
-
-
+//Update 2
 import { LoginPage } from "../ui/web/auth/LoginPage_3";
 import { logger } from "../support/infra/logger_1";
-import { UserBuilder,User } from "../data/builders/userBuilder_10";
-
+import { LoginBuilder,Login } from "../data/builders/loginBuilder_10";
+import { config } from "../framework/config/configReader_5";
 
 export class AuthFlows{
     private loginPageFlow:LoginPage;
@@ -96,8 +89,8 @@ export class AuthFlows{
 
     //---Persona Flows
     async loginAsStandardUser(){
-        const user=UserBuilder.standardUser().build();
-        await this.loginValidUser(user.username,user.password);
+        const userlogin=LoginBuilder.standardUser().build();
+        await this.loginValidUser(userlogin.username,userlogin.password);
     }
     /*why we use async/await in loginAsStandardUser?
     Because in loginValidUser it contains a promise and need to resolve it. till that loginstandarduser should wait so we are using await to mention that after this step completion only next step should happen.
@@ -117,13 +110,13 @@ export class AuthFlows{
 */
 
     async loginAsAdmin(){
-        const user=UserBuilder.adminUser().build();
-        await this.loginValidUser(user.username,user.password);
+        const userlogin=LoginBuilder.adminUser().build();
+        await this.loginValidUser(userlogin.username,userlogin.password);
     }
 
-    async loginWithCustomUser(user:User){
+    async loginWithCustomUser(userlogin:Login){
         logger.info(`Businees Flow: Login with custom user data`);
-        await this.loginValidUser(user.username,user.password);
+        await this.loginValidUser(userlogin.username,userlogin.password);
     }
 
 

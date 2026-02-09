@@ -1,17 +1,17 @@
 /*Why we are exporting User here?
 In Authflows we will have a method called loginWithCustomValidUser(user) and pass the user data. For that we need to mention the data type of user for that we need to export the data type. */
-export type User={
+export type Login={
     username:string;
     password:string;
     role:string;
     is2FAEnabled?:boolean;
 }
 
-export class UserBuilder{
+export class LoginBuilder{
 
 
     //this is the default user as if we didn't provide any data for eg username is not provided for any tests then this default name will be taken.
-    private user:User={
+    private defaultLogin:Login={
         username:'default_user',
         password:'default_pass',
         role:'standard',
@@ -22,9 +22,9 @@ export class UserBuilder{
 
     /*Why we want to create a static method? We can create an object in the main file like UserBuilder sk=new UserBuilder() and call the methods like UserBuilder().standardUser() right?
     If we have already defined values we can make it static but object creation in main class method also acceptable. */
-    static standardUser(){
-        return new UserBuilder()
-        .withUsername('practice')
+    static standardUser(){ //static onboardingteammember 
+        return new LoginBuilder()
+        .withUsername('practice') //.withUsername() //username+12345 ()
         .withPassword('SuperSecretPassword!')
         .withRole('standard');
     }
@@ -40,33 +40,33 @@ export class UserBuilder{
 
 
     static adminUser(){
-        return new UserBuilder()
+        return new LoginBuilder()
         .withUsername('ctan')
         .withPassword('connect2GC@sh')
-        .withRole('admin');
+        .withRole('Onboarding Team Member Support/Team Lead role');
     }
 
 
 
 
     withUsername(username:string){
-        this.user.username=username;
+        this.defaultLogin.username=username;
         /*
-        What is this.user?
-        private user: User = {
+        What is this.defaultLogin?
+        private defaultLogin: Login = {
             username: 'default_user',
             password: 'default_pass',
             role: 'standard',
             is2FAEnabled: false
         };
         */
-       //Generally when we create an object(new UserBuilder()) the default values will be applied to that user. But we want to change the defaulvalues. So we will call withUsername method to change the value for that user.
+       //Generally when we create an object(new LoginBuilder()) the default values will be applied to that login. But we want to change the defaulvalues. So we will call withUsername method to change the value for that login.
        return this;
-       /*Why returning this instead of this.user.username?
-       If we return this.user.username it will be "string" and with that string how can we do string.withPassword(). The chaining breaks.
+       /*Why returning this instead of this.defaultLogin.username?
+       If we return this.defaultLogin.username it will be "string" and with that string how can we do string.withPassword(). The chaining breaks.
        So we are returning "this" that is object. 
-       UserBuilder {
-        user: {
+       LoginBuilder {
+        defaultLogin: {
             username: 'john',
             password: 'default_pass',
             role: 'standard',
@@ -78,23 +78,23 @@ export class UserBuilder{
 
 
     withPassword(password:string){
-        this.user.password=password;
+        this.defaultLogin.password=password;
         return this;
     }
 
     withRole(role:string){
-        this.user.role=role;
+        this.defaultLogin.role=role;
         return this;
     }
     
 
-    build():User{
-        return this.user;
+    build():Login{
+        return this.defaultLogin;
     }
     /*Why we need this build()?
-    const x = UserBuilder.standardUser();
+    const x = LoginBuilder.standardUser();
     The value of x is:
-    UserBuilder {
+    LoginBuilder {
     user: { ... }
     }
     Then we cannot do this.username
