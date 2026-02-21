@@ -13,15 +13,16 @@ export class LoginPage extends BasePage{
     private loginButton = '#kc-login';
 
     async enterUsername(username:string):Promise<void>{
-        await this.type(this.usernameInput,username);
+        await this.fill(this.usernameInput,username);
     }
 
 
     async enterPassword(password:string):Promise<void>{
-        await this.type(this.passwordInput,password);
+        await this.fill(this.passwordInput,password);
     }
 
     async clickLogin():Promise<void>{
         await this.click(this.loginButton);
+        // await this.page.waitForLoadState('networkidle');//new add on
     }
 }

@@ -1,3 +1,6 @@
+import { TestData } from "../../support/utils/testData";
+import { UserBuilder } from "./userBuilder_24";
+
 /*Why we are exporting User here?
 In Authflows we will have a method called loginWithCustomValidUser(user) and pass the user data. For that we need to mention the data type of user for that we need to export the data type. */
 export type Role={
@@ -26,9 +29,40 @@ export class RoleBuilder{
         .withEmail('santhosh.krishnan@ascendion.com')
         .withFirstName('Santhosh')
         .withLastName('Krishnan')
-        .withPassword('@testing123')
-        .withRole('Onboarding Team Member Support/Team Lead role');
+        .withPassword('@Testing123')
+        .withRole('Onboarding Team Member Support or Team Lead');
     }
+
+
+    static merchantAdminUser(){
+            return new RoleBuilder()
+            .withEmail('santhosh.krishnan@ascendion.com')
+            .withFirstName('Santhosh')
+            .withLastName('Krishnan')
+            .withPassword('@Testing123')
+            .withRole('Merchant Super Admin');
+        }
+    
+    
+        static onboardingTeamMemberApprover(){
+            return new RoleBuilder()
+            .withEmail('santhosh.krishnan@ascendion.com')
+            .withFirstName('Santhosh')
+            .withLastName('Krishnan')
+            .withPassword('@Testing123')
+            .withRole('Onboarding Team Member Approver');
+        }
+    
+    
+        static onboardingTeamMemberSpecialist(){
+            return new RoleBuilder()
+            .withEmail('santhosh.krishnan@ascendion.com')
+            .withFirstName('Santhosh')
+            .withLastName('Krishnan')
+            .withPassword('@Testing123')
+            .withRole('Onboarding Team Member Specialist');
+        }
+
 
 
     withEmail(email:string){

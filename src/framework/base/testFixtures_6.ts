@@ -8,14 +8,22 @@ import { AssertionUtils } from "../../support/assertion/assertionUtils_9";
 import { RoleFlow } from "../../domain/roleFlow_20";
 import { RolePage } from "../../ui/web/auth/rolePage_19";
 import { UserFlow } from "../../domain/userFlow_25";
+import { B2BFlow } from "../../domain/b2BFlow_29";
 import { UserPage } from "../../ui/web/auth/userPage_23";
+import { B2BPage } from "../../ui/web/auth/B2BPage_28";
+import { RealmSettingsPage } from "../../ui/web/auth/realmSettingPage_26";
+import { RealmSettingsFlow } from "../../domain/realmSettingFlow_27";
 type AppFixtures={
   loginPage:LoginPage;
   rolePage:RolePage;
   userPage:UserPage;
+  b2BPage:B2BPage;
+  realmSettingsPage:RealmSettingsPage;
   authFlows:AuthFlows;
   roleFlows:RoleFlow;
   userFlows:UserFlow;
+  b2bFlows:B2BFlow;
+  realmSettingsFlows:RealmSettingsFlow;
   assert:AssertionUtils;
 }
 
@@ -71,16 +79,32 @@ export const testFixture= base.extend<AppFixtures>({
       await use(new UserPage(page));
     },
 
+    b2BPage:async({page},use)=>{
+      await use(new B2BPage(page));
+    },
+
+    realmSettingsPage:async({page},use)=>{
+      await use(new RealmSettingsPage(page));
+    },
+
     authFlows:async({loginPage},use)=>{
       await use(new AuthFlows(loginPage));
     },
 
-    roleFlows:async({rolePage,authFlows},use)=>{
-      await use(new RoleFlow(rolePage,authFlows));
+    roleFlows:async({rolePage},use)=>{
+      await use(new RoleFlow(rolePage));
     },
 
     userFlows:async({userPage},use)=>{
       await use(new UserFlow(userPage));
+    },
+
+    b2bFlows:async({b2BPage},use)=>{
+      await use(new B2BFlow(b2BPage));
+    },
+
+    realmSettingsFlows:async({realmSettingsPage},use)=>{
+      await use(new RealmSettingsFlow(realmSettingsPage));
     },
 
     assert:async({page},use)=>{

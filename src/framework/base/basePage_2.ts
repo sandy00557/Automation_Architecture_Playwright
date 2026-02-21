@@ -1,5 +1,6 @@
 import {Page,Locator} from '@playwright/test';
 import { logger } from '../../support/infra/logger_1';
+import { log } from 'node:console';
 
 
 export class BasePage{
@@ -37,14 +38,19 @@ export class BasePage{
     }
 
 
-    async type(selector:string,text:string):Promise<void>{
-        logger.info(`Typing into ${selector}: ${text}`);
-        await this.getLocator(selector).fill(text);
-    }
+    // async type(selector:string,text:string):Promise<void>{
+    //     logger.info(`Typing into ${selector}: ${text}`);
+    //     await this.getLocator(selector).fill(text);
+    // }
 
-    async clickAndType(selector:string,text:string):Promise<void>{
-        logger.info(`Clicking and typing into ${selector}: ${text}`);
-        await this.getLocator(selector).click();
+    // async clickAndType(selector:string,text:string):Promise<void>{
+    //     logger.info(`Clicking and typing into ${selector}: ${text}`);
+    //     await this.getLocator(selector).click();
+    //     await this.getLocator(selector).fill(text);
+    // }
+
+    async fill(selector:string,text:string):Promise<void>{
+        logger.info(`Filling ${selector} with: ${text}`);
         await this.getLocator(selector).fill(text);
     }
 
@@ -52,5 +58,23 @@ export class BasePage{
         logger.info(`Getting text from ${selector}`);
         return await this.getLocator(selector).innerText();
     }
+
+
+    async waitForElementToBeEnabled(selector: string): Promise<void> {
+        logger.info(`Waiting for element to be enabled: ${selector}`);
+        await this.page.waitForSelector(selector, { state: 'visible' });
+    }
+
+
+    async press(selector:string,key:string):Promise<void>{
+        logger.info(`Pressing ${key} on ${selector}`);
+        await this.getLocator(selector).press(key);
+    }
+
+
+    async timeout(){
+        await this.page.waitForTimeout(3000);
+    }
+
 }
 
