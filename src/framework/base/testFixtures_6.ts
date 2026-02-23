@@ -3,7 +3,6 @@ import {test as base} from '@playwright/test';
 import { beforeEachHook } from "../hooks/beforeEachHook_16";
 import { afterEachHook } from "../hooks/afterEachHook_17";
 import { LoginPage } from "../../ui/web/auth/LoginPage_3";
-import { AuthFlows } from "../../domain/authFlows_4";
 import { AssertionUtils } from "../../support/assertion/assertionUtils_9";
 import { RoleFlow } from "../../domain/roleFlow_20";
 import { RolePage } from "../../ui/web/auth/rolePage_19";
@@ -13,13 +12,14 @@ import { UserPage } from "../../ui/web/auth/userPage_23";
 import { B2BPage } from "../../ui/web/auth/B2BPage_28";
 import { RealmSettingsPage } from "../../ui/web/auth/realmSettingPage_26";
 import { RealmSettingsFlow } from "../../domain/realmSettingFlow_27";
+import { LoginFlows } from "../../domain/LoginFlows_4";
 type AppFixtures={
   loginPage:LoginPage;
   rolePage:RolePage;
   userPage:UserPage;
   b2BPage:B2BPage;
   realmSettingsPage:RealmSettingsPage;
-  authFlows:AuthFlows;
+  loginFlows:LoginFlows;
   roleFlows:RoleFlow;
   userFlows:UserFlow;
   b2bFlows:B2BFlow;
@@ -87,8 +87,8 @@ export const testFixture= base.extend<AppFixtures>({
       await use(new RealmSettingsPage(page));
     },
 
-    authFlows:async({loginPage},use)=>{
-      await use(new AuthFlows(loginPage));
+    loginFlows:async({loginPage},use)=>{
+      await use(new LoginFlows(loginPage));
     },
 
     roleFlows:async({rolePage},use)=>{

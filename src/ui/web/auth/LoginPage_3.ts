@@ -23,6 +23,5 @@ export class LoginPage extends BasePage{
 
     async clickLogin():Promise<void>{
         await this.click(this.loginButton);
-        // await this.page.waitForLoadState('networkidle');//new add on
     }
 }

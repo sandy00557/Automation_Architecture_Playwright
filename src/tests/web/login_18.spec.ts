@@ -24,16 +24,16 @@ import { TAGS } from "../../framework/constants/testTags_7";
 import { TIMEOUTS } from "../../framework/constants/timeouts_8";
 
 test.describe('Authentication - Login',()=>{
-  test(`${TAGS.DLV95} ${TAGS.B2B} ${TAGS.SMOKE} ${TAGS.AUTH} Admin user login`,async({authFlows,assert})=>{
+  test(`${TAGS.DLV95} ${TAGS.B2B} ${TAGS.SMOKE} ${TAGS.AUTH} Admin user login`,async({loginFlows,assert})=>{
     test.setTimeout(TIMEOUTS.MEDIUM);//The whole test should be completed within that timelimit or else it will show timelimit exceeded.
-    await authFlows.loginAsAdmin();
+    await loginFlows.loginAsAdmin();
     await assert.urlContains('https://business-iam.sit.gcash.com/admin/master/console/');
 
   })
 
 
-  test(`${TAGS.DLV95} ${TAGS.B2B} ${TAGS.SMOKE} Web-015`,async({authFlows,assert})=>{
+  test(`${TAGS.DLV95} ${TAGS.B2B} ${TAGS.SMOKE} Web-015`,async({loginFlows,assert})=>{
     test.setTimeout(TIMEOUTS.LONG);
-    await authFlows.loginAsAdmin();
+    await loginFlows.loginAsAdmin();
   })
 })
